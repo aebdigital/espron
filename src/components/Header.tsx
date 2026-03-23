@@ -179,7 +179,7 @@ export default function SiteHeader() {
                         <Link
                           href={item.href}
                           onClick={() => setOpen(false)}
-                          className="text-4xl md:text-5xl lg:text-7xl text-white block group font-bold tracking-tight"
+                          className="text-3xl md:text-4xl lg:text-5xl text-white block group font-bold tracking-tight"
                         >
                            <span className="hover-split-text">
                              <span className="hover-split-text-inner" data-text={item.label}>{item.label}</span>

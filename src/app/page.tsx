@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Parallax from "@/components/Parallax";
 import HeroParallax from "@/components/HeroParallax";
+import ImageReveal from "@/components/ImageReveal";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ const services = [
   {
     category: "Stavebné práce",
     items: ["Zatepľovacie práce", "Sadrokartónové práce", "Ručné omietky"],
-    image: "/images/stavebne.jpg",
+    image: "/images/realizacie/b0408c_2883303b07a4489798740af9878cc2db~mv2.avif",
   },
   {
     category: "Architektonické služby",
@@ -62,21 +63,21 @@ const projects = [
     title: "Ako si zatepliť fasádu svojpomocne?",
     desc: "Praktický návod na postup pri zatepľovaní fasády svojpomocne. Čo budete potrebovať, aké materiály zvoliť a na čo si dať pozor?",
     link: "Pozrieť postup",
-    image: "/images/projekt1.jpg",
+    image: "/images/realizacie/b0408c_2883303b07a4489798740af9878cc2db~mv2.avif",
   },
   {
     num: "02",
     title: "Zateplenie fasády v Hlohovci",
     desc: "Rekonštrukcia staršieho domu s použitím minerálnej vlny. Výzvy jesenného zatepľovania a nečakané opravy balkóna a striešky.",
     link: "Pozrieť realizáciu",
-    image: "/images/projekt2.jpg",
+    image: "/images/realizacie/b0408c_e892b2d0c5ec4ceebc9fec9218ba13c5~mv2.avif",
   },
   {
     num: "03",
     title: "Zateplenie fasády v Trnave",
     desc: "Letné zatepľovanie so sivým a bielym polystyrénom. Ako sme riešili prístavbu z Ytongu a čelili vysokým teplotám pri práci?",
     link: "Pozrieť realizáciu",
-    image: "/images/projekt3.jpg",
+    image: "/images/realizacie/b0408c_fdbfe48c629c4b9ca41b1651bc21cf79~mv2.avif",
   },
 ];
 
@@ -157,15 +158,17 @@ export default function Home() {
               {services.map((service, i) => (
                 <AnimateOnScroll key={service.category} delay={i * 120}>
                   <div className="group relative rounded-3xl overflow-hidden bg-white border border-border hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <Image
-                        src={service.image}
-                        alt={service.category}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      <h3 className="absolute bottom-5 left-6 text-xl font-bold text-white">
+                    <div className="relative aspect-[16/10]">
+                      <ImageReveal delay={i * 100} className="w-full h-full">
+                        <Image
+                          src={service.image}
+                          alt={service.category}
+                          fill
+                          className="object-cover transition-transform duration-700"
+                        />
+                      </ImageReveal>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                      <h3 className="absolute bottom-5 left-6 text-xl font-black text-white pointer-events-none">
                         {service.category}
                       </h3>
                     </div>
@@ -213,13 +216,15 @@ export default function Home() {
               {reasons.slice(0, 2).map((reason, i) => (
                 <AnimateOnScroll key={reason.title} delay={i * 100}>
                   <div className="group relative rounded-3xl overflow-hidden h-[400px] cursor-default">
-                    <Image
-                      src={reason.image}
-                      alt={reason.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/40 to-transparent" />
+                    <ImageReveal delay={i * 150} className="w-full h-full">
+                      <Image
+                        src={reason.image}
+                        alt={reason.title}
+                        fill
+                        className="object-cover transition-transform duration-700"
+                      />
+                    </ImageReveal>
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/40 to-transparent pointer-events-none" />
                     <div className="absolute bottom-0 left-0 right-0 p-8">
                       <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-white/70 mb-4">
                         {String(i + 1).padStart(2, "0")}
@@ -241,15 +246,17 @@ export default function Home() {
               {reasons.slice(2).map((reason, i) => (
                 <AnimateOnScroll key={reason.title} delay={(i + 2) * 100}>
                   <div className="group relative bg-white rounded-3xl overflow-hidden border border-border hover:border-primary/20 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500">
-                    <div className="relative h-48 overflow-hidden">
-                      <Image
-                        src={reason.image}
-                        alt={reason.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
-                      <span className="absolute top-4 left-4 inline-block px-3 py-1 bg-primary/90 backdrop-blur-sm rounded-full text-xs font-semibold text-white">
+                    <div className="relative h-48">
+                      <ImageReveal delay={(i + 2) * 100} className="w-full h-full">
+                        <Image
+                          src={reason.image}
+                          alt={reason.title}
+                          fill
+                          className="object-cover transition-transform duration-700"
+                        />
+                      </ImageReveal>
+                      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none" />
+                      <span className="absolute top-4 left-4 inline-block px-3 py-1 bg-primary/90 backdrop-blur-sm rounded-full text-xs font-semibold text-white z-10">
                         {String(i + 3).padStart(2, "0")}
                       </span>
                     </div>
@@ -271,12 +278,14 @@ export default function Home() {
         {/* ═══════ FULL WIDTH IMAGE BREAK ═══════ */}
         <section className="relative h-[50vh] overflow-hidden">
           <Parallax speed={0.15} className="absolute inset-0 w-full h-[130%] -top-[15%]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/hero2.jpg"
-              alt="Stavebné práce detail"
-              className="w-full h-full object-cover"
-            />
+            <ImageReveal grayscale={true} className="w-full h-full">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/hero2.jpg"
+                alt="Stavebné práce detail"
+                className="w-full h-full object-cover"
+              />
+            </ImageReveal>
           </Parallax>
           <div className="absolute inset-0 bg-primary/60" />
           <div className="relative z-10 flex items-center justify-center h-full">
@@ -313,14 +322,16 @@ export default function Home() {
                 <AnimateOnScroll key={project.num} delay={i * 120}>
                   <div className="group cursor-pointer">
                     <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 group-hover:shadow-2xl group-hover:shadow-primary/10 transition-all duration-500">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                      <span className="absolute top-5 left-5 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-primary">
+                      <ImageReveal delay={i * 200} className="w-full h-full">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-700"
+                        />
+                      </ImageReveal>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                      <span className="absolute top-5 left-5 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-primary z-10">
                         {project.num}
                       </span>
                     </div>
@@ -358,12 +369,16 @@ export default function Home() {
         {/* ═══════ CTA + FOOTER combined ═══════ */}
         <footer id="kontakt" className="relative overflow-hidden">
           {/* Background hero photo — visible at top, fades to solid primary */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/hero.jpg"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-40"
-          />
+          <div className="absolute inset-0 opacity-40">
+            <ImageReveal grayscale={true} className="w-full h-full">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/hero.jpg"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </ImageReveal>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/90 to-primary" />
 
           <div className="relative z-10">
