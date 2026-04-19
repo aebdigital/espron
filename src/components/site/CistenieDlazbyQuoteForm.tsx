@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { submitContact } from "@/lib/submit-contact";
+import TurnstileWidget from "./TurnstileWidget";
 
 type FormData = {
   typDlazby: string;
@@ -41,6 +42,7 @@ export default function CistenieDlazbyQuoteForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const total = STEPS.length;
   const isLast = step === total - 1;
@@ -74,6 +76,7 @@ export default function CistenieDlazbyQuoteForm() {
       phone: data.telefon,
       subject: "Cenová ponuka – čistenie dlažby",
       message: lines.join("\n"),
+      turnstileToken,
     });
     setSending(false);
     if (result.success) { setSent(true); }
@@ -323,6 +326,7 @@ export default function CistenieDlazbyQuoteForm() {
         </div>
       )}
 
+      {isLast && <TurnstileWidget onToken={setTurnstileToken} className="mt-6" />}
       {error && <p className="mt-6 text-sm text-red-600">{error}</p>}
       {/* Navigation */}
       <div className="mt-8 flex items-center justify-between">
@@ -356,7 +360,7 @@ export default function CistenieDlazbyQuoteForm() {
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={sending}
+            disabled={sending || !turnstileToken}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-primary/90 disabled:opacity-60"
           >
             {sending ? "Odosiela sa…" : "Odoslať"}

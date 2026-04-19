@@ -2,6 +2,7 @@
 
 import { useState, type CSSProperties } from "react";
 import { submitContact } from "@/lib/submit-contact";
+import TurnstileWidget from "./TurnstileWidget";
 
 export type BuilderContactField = {
   id: string;
@@ -59,6 +60,7 @@ export default function BuilderContactForm({
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const rows = groupRows(fields);
 
@@ -106,6 +108,7 @@ export default function BuilderContactForm({
       phone: phoneField ? values[phoneField.name] : undefined,
       subject: subject || "Správa z webu – ESPRON",
       message: messageParts.join("\n") || "(bez textu)",
+      turnstileToken,
     });
     setSending(false);
     if (result.success) {
@@ -168,11 +171,13 @@ export default function BuilderContactForm({
         </div>
       ))}
 
+      <TurnstileWidget onToken={setTurnstileToken} />
+
       {error && <p className="text-sm text-red-600">{error}</p>}
 
       <button
         type="submit"
-        disabled={sending}
+        disabled={sending || !turnstileToken}
         className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-primary/90 disabled:opacity-60"
       >
         {sending ? "Odosiela sa…" : buttonText || "Odoslať správu"}

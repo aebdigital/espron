@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { submitContact } from "@/lib/submit-contact";
+import TurnstileWidget from "./TurnstileWidget";
 
 type FormData = {
   meno: string;
@@ -17,6 +18,7 @@ export default function KontaktForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   function set<K extends keyof FormData>(key: K, value: string) {
     setData((prev) => ({ ...prev, [key]: value }));
@@ -32,6 +34,7 @@ export default function KontaktForm() {
       phone: data.telefon,
       subject: "Kontaktný formulár – ESPRON",
       message: data.sprava,
+      turnstileToken,
     });
     setSending(false);
     if (result.success) {
@@ -111,12 +114,13 @@ export default function KontaktForm() {
           className="w-full rounded-xl border border-border px-4 py-3 text-sm outline-none transition-colors focus:border-primary"
         />
       </div>
+      <TurnstileWidget onToken={setTurnstileToken} />
       {error && (
         <p className="text-sm text-red-600">{error}</p>
       )}
       <button
         type="submit"
-        disabled={sending}
+        disabled={sending || !turnstileToken}
         className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-primary/90 disabled:opacity-60"
       >
         {sending ? "Odosiela sa…" : "Odoslať správu"}
