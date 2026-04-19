@@ -43,6 +43,7 @@ export default function CistenieFasadyQuoteForm() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [agreed, setAgreed] = useState(false);
 
   const total = STEPS.length;
   const isLast = step === total - 1;
@@ -328,7 +329,23 @@ export default function CistenieFasadyQuoteForm() {
         </div>
       )}
 
-      {isLast && <TurnstileWidget onToken={setTurnstileToken} className="mt-6" />}
+      {isLast && (
+        <div className="mt-6">
+          <div className="flex items-start gap-3 py-2">
+            <input
+              id="gdpr"
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-primary"
+            />
+            <label htmlFor="gdpr" className="text-xs text-foreground/70 select-none">
+              Súhlasím so spracovaním osobných údajov
+            </label>
+          </div>
+          <TurnstileWidget onToken={setTurnstileToken} className="mt-4" />
+        </div>
+      )}
       {error && <p className="mt-6 text-sm text-red-600">{error}</p>}
       {/* Navigation */}
       <div className="mt-8 flex items-center justify-between">
@@ -362,7 +379,7 @@ export default function CistenieFasadyQuoteForm() {
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={sending || !turnstileToken}
+            disabled={sending || !turnstileToken || !agreed}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-primary/90 disabled:opacity-60"
           >
             {sending ? "Odosiela sa…" : "Odoslať"}

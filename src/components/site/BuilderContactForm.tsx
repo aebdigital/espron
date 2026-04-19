@@ -61,6 +61,7 @@ export default function BuilderContactForm({
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [agreed, setAgreed] = useState(false);
 
   const rows = groupRows(fields);
 
@@ -171,13 +172,25 @@ export default function BuilderContactForm({
         </div>
       ))}
 
+      <div className="flex items-start gap-3 py-2">
+        <input
+          id="gdpr"
+          type="checkbox"
+          checked={agreed}
+          onChange={(e) => setAgreed(e.target.checked)}
+          className="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-primary"
+        />
+        <label htmlFor="gdpr" className="text-xs text-foreground/70 select-none">
+          Súhlasím so spracovaním osobných údajov
+        </label>
+      </div>
       <TurnstileWidget onToken={setTurnstileToken} />
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
       <button
         type="submit"
-        disabled={sending || !turnstileToken}
+        disabled={sending || !turnstileToken || !agreed}
         className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-primary/90 disabled:opacity-60"
       >
         {sending ? "Odosiela sa…" : buttonText || "Odoslať správu"}
