@@ -117,6 +117,14 @@ const INCLUDED = [
     ),
   },
   {
+    label: "Druhá vrstva lepidla",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4h16v16H4V4zm4 4h8v8H8V8z" />
+      </svg>
+    ),
+  },
+  {
     label: "Penetrácia pod omietku",
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
