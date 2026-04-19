@@ -19,10 +19,89 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 const PROBLEMS = [
-  { label: "Tvorba plesní a machov" },
-  { label: "Degradácia stavebných materiálov" },
-  { label: "Zníženie izolačných vlastností" },
-  { label: "Zníženie estetickej hodnoty" },
+  {
+    label: "Zdravotné riziká",
+    desc: "Plesne a riasy uvoľňujú spóry, ktoré môžu spôsobiť alergie a dýchacie problémy.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-1.42.71a2 2 0 01-1.42 0l-1.42-.71a6 6 0 00-3.86-.517l-2.387.477a2 2 0 00-1.022.547l-.547 2.387a2 2 0 00.547 2.044l1.42 1.42a2 2 0 002.044.547l2.387-.477a6 6 0 003.86-.517l1.42-.71a2 2 0 011.42 0l1.42.71a6 6 0 003.86.517l2.387.477a2 2 0 002.044-.547l1.42-1.42a2 2 0 00.547-2.044l-.547-2.387z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9V4m0 0L9 7m3-3l3 3" />
+      </svg>
+    ),
+  },
+  {
+    label: "Degradácia omietky",
+    desc: "Korene machov a rias narúšajú štruktúru fasády, čo vedie k prasklinám a odlupovaniu.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 10l.5.5m2 2l.5.5m-3 0l.5-.5m2-2l.5-.5" />
+      </svg>
+    ),
+  },
+  {
+    label: "Zníženie hodnoty",
+    desc: "Zanedbaný vzhľad fasády výrazne znižuje vizuálnu a trhovú hodnotu vašej nehnuteľnosti.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+      </svg>
+    ),
+  },
+  {
+    label: "Prienik vlhkosti",
+    desc: "Narušená fasáda stráca Hydrofóbnu schopnosť, čím do stien preniká nebezpečná vlhkosť.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+      </svg>
+    ),
+  },
+];
+
+const INCLUDED = [
+  {
+    label: "Odborná obhliadka",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 14l2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    label: "Aplikácia chémie",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-1.42.71a2 2 0 01-1.42 0l-1.42-.71a6 6 0 00-3.86-.517l-2.387.477a2 2 0 00-1.022.547l-.547 2.387a2 2 0 00.547 2.044l1.42 1.42a2 2 0 002.044.547l2.387-.477a6 6 0 003.86-.517l1.42-.71a2 2 0 011.42 0l1.42.71a6 6 0 003.86.517l2.387.477a2 2 0 002.044-.547l1.42-1.42a2 2 0 00.547-2.044l-.547-2.387z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Hĺbkové čistenie",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    ),
+  },
+  {
+    label: "Dôkladný oplach",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+    ),
+  },
+  {
+    label: "Ochranná impregnácia",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A3.33 3.33 0 0018 10.382V13c0 4.418-3.582 8-8 8s-8-3.582-8-8V10.382c0-1.129.569-2.174 1.517-2.8L10 3.167l6.483 4.415c.948.626 1.517 1.671 1.517 2.8z" />
+      </svg>
+    ),
+  },
 ];
 
 const WHY = [
@@ -91,16 +170,41 @@ export default function CistenieFasadyPage() {
               Problémy spôsobené špinavou fasádou
             </h2>
           </AnimateOnScroll>
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {PROBLEMS.map((p, index) => (
-              <AnimateOnScroll key={p.label} delay={index * 70}>
-                <div className="flex flex-col items-center gap-4 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-primary/20 bg-white">
-                    <svg className="h-7 w-7 text-primary/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+              <AnimateOnScroll key={p.label} delay={index * 100}>
+                <div className="group rounded-[2rem] border border-border bg-white p-8 transition-all hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_20px_50px_rgba(15,29,74,0.06)]">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                    {p.icon}
                   </div>
-                  <p className="text-sm font-medium leading-5 text-foreground/75">{p.label}</p>
+                  <h3 className="mb-3 text-lg font-bold text-foreground">{p.label}</h3>
+                  <p className="text-sm leading-7 text-foreground/60">{p.desc}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── INCLUDED ─────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto w-[92%]">
+          <AnimateOnScroll className="mb-14 text-center">
+            <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.26em] text-primary/55">
+              Čistenie fasády
+            </p>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              Všetky potrebné úkony v cene
+            </h2>
+          </AnimateOnScroll>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
+            {INCLUDED.map((item, index) => (
+              <AnimateOnScroll key={item.label} delay={index * 80}>
+                <div className="flex flex-col items-center gap-5 text-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-border bg-white text-primary shadow-sm transition-transform hover:scale-110">
+                    {item.icon}
+                  </div>
+                  <p className="text-sm font-bold text-foreground/80">{item.label}</p>
                 </div>
               </AnimateOnScroll>
             ))}

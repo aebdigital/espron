@@ -20,17 +20,118 @@ export const metadata: Metadata = {
 
 export const revalidate = 0;
 
+const PROBLEMS = [
+  {
+    label: "Tepelné mosty",
+    desc: "Nesprávne detaily vedú k únikom tepla a vzniku chladných miest v interiéri.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Vlhnutie stien",
+    desc: "Nekvalitné zateplenie bráni stenám 'dýchať', čo vedie k zrážaniu vlhkosti a plesniam.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5" />
+      </svg>
+    ),
+  },
+  {
+    label: "Praskliny na fasáde",
+    desc: "Nedodržanie technologických páuz spôsobuje napätie a vznik trhlín v omietke.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3" />
+      </svg>
+    ),
+  },
+  {
+    label: "Zatekanie vody",
+    desc: "Zle osadené parapety a lišty umožňujú vode prenikať pod izolant a ničiť konštrukciu.",
+    icon: (
+      <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    ),
+  },
+];
+
 const INCLUDED = [
-  { label: "Postavenie lešenia", icon: "🏗️" },
-  { label: "Zakrytie okien a dlažby", icon: "🪟" },
-  { label: "Penetrácia podkladu", icon: "🖌️" },
-  { label: "Lepenie izolantu", icon: "🧱" },
-  { label: "Zápustné kotvenie", icon: "🔩" },
-  { label: "APU lišty a rohové profily", icon: "📐" },
-  { label: "Sieťka a prvá vrstva lepidla", icon: "🔲" },
-  { label: "Druhá vrstva lepidla", icon: "🖌️" },
-  { label: "Penetrácia pod omietku", icon: "🖌️" },
-  { label: "Finálna fasádna omietka", icon: "💎" },
+  {
+    label: "Postavenie lešenia",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0l2-2m4 4l2-2m-2 2v2m-4-6V3m0 0L7 5m2-2l2 2" />
+      </svg>
+    ),
+  },
+  {
+    label: "Zakrytie okien a dlažby",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Penetrácia podkladu",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Lepenie izolantu",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0l2-2m4 4l2-2" />
+      </svg>
+    ),
+  },
+  {
+    label: "Zápustné kotvenie",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+      </svg>
+    ),
+  },
+  {
+    label: "APU lišty a profily",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Sieťka a lepidlo (1.v.)",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM4 10h16M4 14h16M10 4v16M14 4v16" />
+      </svg>
+    ),
+  },
+  {
+    label: "Penetrácia pod omietku",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Finálna fasádna omietka",
+    icon: (
+      <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z" />
+      </svg>
+    ),
+  },
 ];
 
 const BONUSES = [
@@ -210,8 +311,33 @@ export default async function ZateplenieFasadyPage() {
         imageAlt="Zateplenie fasády"
       />
 
-      {/* ── INCLUDED ─────────────────────────────────────────────────── */}
+      {/* ── PROBLEMS ─────────────────────────────────────────────────── */}
       <section className="bg-light py-20 md:py-28">
+        <div className="mx-auto w-[92%]">
+          <AnimateOnScroll className="mb-14 text-center">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              Problémy spôsobené nekvalitným zateplením
+            </h2>
+            <p className="mt-3 text-sm text-foreground/55">Prečo si vybrať odbornú realizáciu?</p>
+          </AnimateOnScroll>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {PROBLEMS.map((p, index) => (
+              <AnimateOnScroll key={p.label} delay={index * 100}>
+                <div className="group rounded-[2rem] border border-border bg-white p-8 transition-all hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_20px_50px_rgba(15,29,74,0.06)]">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                    {p.icon}
+                  </div>
+                  <h3 className="mb-3 text-lg font-bold text-foreground">{p.label}</h3>
+                  <p className="text-sm leading-7 text-foreground/60">{p.desc}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── INCLUDED ─────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-28">
         <div className="mx-auto w-[92%]">
           <AnimateOnScroll className="mb-14 text-center">
             <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
@@ -222,9 +348,11 @@ export default async function ZateplenieFasadyPage() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
             {INCLUDED.map((item, index) => (
               <AnimateOnScroll key={item.label} delay={index * 50}>
-                <div className="flex flex-col items-center gap-3 text-center">
-                  <span className="text-4xl">{item.icon}</span>
-                  <p className="text-xs leading-5 text-foreground/70">{item.label}</p>
+                <div className="flex flex-col items-center gap-5 text-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-border bg-white text-primary shadow-sm transition-transform hover:scale-110">
+                    {item.icon}
+                  </div>
+                  <p className="text-sm font-bold text-foreground/80 leading-tight">{item.label}</p>
                 </div>
               </AnimateOnScroll>
             ))}
