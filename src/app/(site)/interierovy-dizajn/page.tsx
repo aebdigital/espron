@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     "Interiérový dizajn pre rodinné domy, byty a komerčné priestory. Ponúkame po celom Slovensku. Dispozičný návrh od 200 EUR.",
 };
 
+export const revalidate = 0;
+
 const CITIES =
   "Bratislava, Nitra, Košice, Prešov, Poprad, Spišská Nová Ves, Žilina, Banská Bystrica, Trnava, Trenčín, Martin, Liptovský Mikuláš a ich okolí";
 

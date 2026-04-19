@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "Škvrna na koberci alebo zašpinená sedačka? Žiadny problém. Pošli foto. Do 24 h pošleme cenu a termín. Do rána suché, bez zápachu.",
 };
 
+export const revalidate = 0;
+
 const WHO = [
   {
     title: "Náročné domácnosti",

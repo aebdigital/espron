@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "Sadrokartónové stropy a priečky pre rodinné domy, bytové domy a komerčné budovy. Ponúkame po celom Slovensku. Cena od 18 EUR za m².",
 };
 
+export const revalidate = 0;
+
 const CITIES =
   "Bratislava, Nitra, Košice, Prešov, Poprad, Spišská Nová Ves, Žilina, Banská Bystrica, Trnava, Trenčín, Martin, Liptovský Mikuláš a ich okolí";
 

@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "Vysokotlakové čistenie dlažby, chodníkov, príjazdových ciest a parkovísk. Ponúkame na východnom Slovensku. Cena 2 – 7 EUR/m².",
 };
 
+export const revalidate = 0;
+
 const WHY = [
   {
     title: "Zvýšenie estetiky a hodnoty vašej nehnuteľnosti",

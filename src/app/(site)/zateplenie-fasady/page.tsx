@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     "Kompletné zateplenie rodinných domov kdekoľvek na Slovensku. Bez estetických chýb a skrytých poplatkov. Ceny od 94 €/m².",
 };
 
+export const revalidate = 0;
+
 const INCLUDED = [
   { label: "Postavenie lešenia", icon: "🏗️" },
   { label: "Zakrytie okien a dlažby", icon: "🪟" },
