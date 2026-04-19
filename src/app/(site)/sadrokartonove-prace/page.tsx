@@ -132,7 +132,7 @@ export default function SadrokartonPage() {
       {/* ── PROCESS ──────────────────────────────────────────────────── */}
       <section className="py-20 md:py-28">
         <div className="mx-auto w-[92%]">
-          <div className="mb-14 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+          <div className="mb-14">
             <AnimateOnScroll>
               <div>
                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-primary/55">
@@ -142,18 +142,6 @@ export default function SadrokartonPage() {
                   Postup prác
                 </h2>
               </div>
-            </AnimateOnScroll>
-            <AnimateOnScroll
-              delay={120}
-              className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-border bg-light"
-            >
-              <Image
-                src={MEDIA.items[0].image}
-                alt={MEDIA.items[0].alt}
-                fill
-                sizes="(min-width: 1024px) 320px, 100vw"
-                className="object-cover"
-              />
             </AnimateOnScroll>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -175,39 +163,47 @@ export default function SadrokartonPage() {
       {/* ── WHY ──────────────────────────────────────────────────────── */}
       <section className="bg-light py-20 md:py-28">
         <div className="mx-auto w-[92%]">
-          <div className="mb-14 grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-end">
+          <div className="grid gap-12 lg:grid-cols-[1fr_420px] lg:items-start">
+            <div>
+              <AnimateOnScroll className="mb-10">
+                <div>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-primary/55">
+                    Sadrokartónové práce
+                  </p>
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                    Prečo si nechať znížiť strop?
+                  </h2>
+                </div>
+              </AnimateOnScroll>
+
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                {WHY.map((item, index) => (
+                  <AnimateOnScroll key={item.title} delay={index * 80}>
+                    <div className="rounded-[1.5rem] border border-border bg-white p-8 shadow-[0_12px_40px_rgba(15,29,74,0.04)]">
+                      <h3 className="mb-3 text-base font-bold text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm leading-7 text-foreground/70">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </AnimateOnScroll>
+                ))}
+              </div>
+            </div>
+
             <AnimateOnScroll
-              delay={80}
-              className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-border bg-white"
+              delay={120}
+              className="relative aspect-square overflow-hidden rounded-[2.5rem] border border-border bg-white shadow-[0_20px_60px_rgba(0,0,0,0.05)] lg:mt-10"
             >
               <Image
                 src={MEDIA.items[1].image}
                 alt={MEDIA.items[1].alt}
                 fill
-                sizes="(min-width: 1024px) 280px, 100vw"
+                sizes="(min-width: 1024px) 420px, 100vw"
                 className="object-cover"
               />
             </AnimateOnScroll>
-            <AnimateOnScroll>
-              <div>
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-primary/55">
-                  Sadrokartónové práce
-                </p>
-                <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-                  Prečo si nechať znížiť strop?
-                </h2>
-              </div>
-            </AnimateOnScroll>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {WHY.map((item, index) => (
-              <AnimateOnScroll key={item.title} delay={index * 80}>
-                <div className="rounded-[1.5rem] border border-border bg-white p-8 shadow-[0_12px_40px_rgba(15,29,74,0.04)]">
-                  <h3 className="mb-3 text-base font-bold text-foreground">{item.title}</h3>
-                  <p className="text-sm leading-7 text-foreground/70">{item.desc}</p>
-                </div>
-              </AnimateOnScroll>
-            ))}
           </div>
         </div>
       </section>
