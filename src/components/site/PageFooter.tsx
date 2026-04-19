@@ -62,7 +62,7 @@ export default function PageFooter() {
           <p>© 2026 ESPRON</p>
           <div className="flex flex-wrap items-center gap-5">
             <CookieSettingsButton className="transition-colors hover:text-white">
-              Cookies
+              COOKIES
             </CookieSettingsButton>
             <Link href="/ochrana-osobnych-udajov" className="transition-colors hover:text-white">
               Ochrana osobných údajov

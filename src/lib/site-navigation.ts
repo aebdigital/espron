@@ -58,6 +58,7 @@ export const PAGE_OVERRIDES: Record<string, PageOverride> = {
       "/zateplenie-fasady/polystyren-biely-sivy",
     ],
   },
+
   "/sadrokartonove-prace": {
     label: "Sadrokartónové práce",
     eyebrow: "Stavebné práce",
@@ -217,6 +218,7 @@ export const NAVIGATION_GROUPS: NavigationGroup[] = [
     title: "Stavebné práce",
     items: [
       { href: "/zateplenie-fasady", label: "Zateplenie fasády" },
+
       { href: "/sadrokartonove-prace", label: "Sadrokartónové práce" },
       { href: "/rucne-omietky", label: "Ručné omietky" },
     ],

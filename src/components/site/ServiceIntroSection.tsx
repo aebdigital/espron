@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import QuoteScrollButton from "@/components/site/QuoteScrollButton";
 
 type ServiceIntroNote = {
   label: string;
@@ -20,6 +21,7 @@ type ServiceIntroSectionProps = {
   meta?: ReactNode;
   ctaLabel?: string;
   ctaHref?: string;
+  ctaTargetId?: string;
   reviewLabel?: string;
   imageSrc: string;
   imageAlt: string;
@@ -46,6 +48,7 @@ export default function ServiceIntroSection({
   meta,
   ctaLabel = "Chcem nezáväznú cenovú ponuku",
   ctaHref = "/kontakt",
+  ctaTargetId = "cenova-ponuka",
   reviewLabel = "Hodnotenie na Google",
   imageSrc,
   imageAlt,
@@ -125,12 +128,20 @@ export default function ServiceIntroSection({
           {meta ? <div className="mt-5 text-sm text-foreground/55">{meta}</div> : null}
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link
-              href={ctaHref}
-              className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-primary/90"
-            >
-              {ctaLabel}
-            </Link>
+            {ctaHref === "/kontakt" ? (
+              <QuoteScrollButton
+                label={ctaLabel}
+                targetId={ctaTargetId}
+                className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-primary/90"
+              />
+            ) : (
+              <Link
+                href={ctaHref}
+                className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-primary/90"
+              >
+                {ctaLabel}
+              </Link>
+            )}
           </div>
 
           <div className="mt-6 flex items-center gap-2">

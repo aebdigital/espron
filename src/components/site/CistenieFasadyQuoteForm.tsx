@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { submitContact } from "@/lib/submit-contact";
 import TurnstileWidget from "./TurnstileWidget";
 
@@ -122,7 +123,17 @@ export default function CistenieFasadyQuoteForm() {
         Krok {step + 1} — {STEPS[step]}
       </p>
 
-      {/* ── Step 0: Typ čistenia ──────────────────────────────── */}
+      {/* Steps with Animation */}
+      <div className="relative min-h-[320px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={step}
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            {/* ── Step 0: Typ čistenia ──────────────────────────────── */}
       {step === 0 && (
         <div>
           <h3 className="mb-6 text-xl font-bold text-foreground">
@@ -149,9 +160,6 @@ export default function CistenieFasadyQuoteForm() {
               </button>
             ))}
           </div>
-          <p className="mt-4 text-xs text-foreground/40">
-            (Ak si nie ste istý, nevadí – doladíme neskôr.)
-          </p>
         </div>
       )}
 
@@ -328,6 +336,9 @@ export default function CistenieFasadyQuoteForm() {
           </p>
         </div>
       )}
+    </motion.div>
+  </AnimatePresence>
+</div>
 
       {isLast && (
         <div className="mt-6">
