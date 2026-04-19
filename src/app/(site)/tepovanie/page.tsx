@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import FloatingQuoteButton from "@/components/site/FloatingQuoteButton";
+import ServiceRealizationGallery from "@/components/site/ServiceRealizationGallery";
+import QuoteScrollButton from "@/components/site/QuoteScrollButton";
+import ServiceIntroSection from "@/components/site/ServiceIntroSection";
 import TepovanieQuoteForm from "@/components/site/TepovanieQuoteForm";
 import { SERVICE_PAGE_MEDIA } from "@/lib/service-page-media";
 import { PAGE_OVERRIDES } from "@/lib/site-navigation";
@@ -144,12 +147,9 @@ export default function TepovaniePage() {
             rýchle schnutie a profesionálny výsledok bez zbytočného stresu.
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/kontakt"
-              className="rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90"
-            >
+            <QuoteScrollButton className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
               Kontaktovať nás
-            </Link>
+            </QuoteScrollButton>
             <Link
               href="mailto:info@espron.sk"
               className="rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-white/10"
@@ -160,50 +160,22 @@ export default function TepovaniePage() {
         </div>
       </section>
 
-      {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28">
-        <div className="relative mx-auto grid w-[92%] gap-12 lg:grid-cols-2 lg:items-center">
-          <AnimateOnScroll>
-            <h1 className="text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              Prémiové tepovanie kobercov a sedačiek
-            </h1>
-            <p className="mt-5 text-lg font-medium text-foreground/70">
-              Škvrna na koberci alebo zašpinená sedačka? Žiadny problém.
-            </p>
-            <p className="mt-3 text-base leading-7 text-foreground/65">
-              Pošli foto. Do 24 h pošleme cenu a termín. Do rána suché, bez zápachu.
-            </p>
-            <p className="mt-3 text-sm font-semibold text-amber-400">
-              7-dňová garancia spokojnosti.
-            </p>
-            <div className="mt-5 text-sm text-foreground/55">
-              <span className="font-semibold text-foreground/70">Lokalita:</span>{" "}
-              Spišská Nová Ves a okolie • Poprad • Prešov
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/kontakt"
-                className="rounded-full bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-primary/90"
-              >
-                Chcem nezáväznú cenovú ponuku
-              </Link>
-            </div>
-            <div className="mt-6 flex items-center gap-2">
-              <span className="text-amber-400">★★★★★</span>
-              <span className="text-sm text-foreground/55">Hodnotenie na google</span>
-            </div>
-          </AnimateOnScroll>
-          <AnimateOnScroll delay={120} className="relative hidden aspect-[4/3] overflow-hidden rounded-3xl lg:block">
-            <Image
-              src={MEDIA.preview}
-              alt="Tepovanie kobercov a sedačiek"
-              fill
-              sizes="50vw"
-              className="object-cover"
-            />
-          </AnimateOnScroll>
-        </div>
-      </section>
+      <ServiceIntroSection
+        title="Prémiové tepovanie kobercov a sedačiek"
+        subtitle="Škvrna na koberci alebo zašpinená sedačka? Žiadny problém."
+        description="Pošli foto. Do 24 h pošleme cenu a termín. Do rána suché, bez zápachu."
+        secondaryDescription={
+          <span className="font-semibold text-amber-400">7-dňová garancia spokojnosti.</span>
+        }
+        meta={
+          <>
+            <span className="font-semibold text-foreground/70">Lokalita:</span>{" "}
+            Spišská Nová Ves a okolie • Poprad • Prešov
+          </>
+        }
+        imageSrc={MEDIA.preview}
+        imageAlt="Tepovanie kobercov a sedačiek"
+      />
 
       {/* ── WHO ──────────────────────────────────────────────────────── */}
       <section className="bg-primary py-20 text-white md:py-28">
@@ -361,6 +333,10 @@ export default function TepovaniePage() {
           <TepovanieQuoteForm />
         </AnimateOnScroll>
       </section>
+      <ServiceRealizationGallery
+        serviceSlug="tepovanie"
+        title="Realizácie tepovania"
+      />
       <FloatingQuoteButton />
     </>
   );

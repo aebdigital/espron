@@ -4,6 +4,9 @@ import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CistenieDlazbyQuoteForm from "@/components/site/CistenieDlazbyQuoteForm";
 import FloatingQuoteButton from "@/components/site/FloatingQuoteButton";
+import ServiceRealizationGallery from "@/components/site/ServiceRealizationGallery";
+import QuoteScrollButton from "@/components/site/QuoteScrollButton";
+import ServiceIntroSection from "@/components/site/ServiceIntroSection";
 import { SERVICE_PAGE_MEDIA } from "@/lib/service-page-media";
 import { PAGE_OVERRIDES } from "@/lib/site-navigation";
 
@@ -48,15 +51,29 @@ export default function CistenieDlazbyPage() {
             Chcete, aby vaša dlažba, chodník, príjazdová cesta, alebo parkovisko bolo opäť čisté, pekné a bezpečné? Práve pre vás je určená naša služba vysokotlakového čistenia dlažby.
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap gap-3">
-            <Link href="/kontakt" className="rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
+            <QuoteScrollButton className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
               Kontaktovať nás
-            </Link>
+            </QuoteScrollButton>
             <Link href="mailto:info@espron.sk" className="rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-white/10">
               Napísať e-mail
             </Link>
           </div>
         </div>
       </section>
+
+      <ServiceIntroSection
+        eyebrow={CATEGORY}
+        title="Čistenie dlažby, ktoré znovu ukáže farbu povrchu"
+        subtitle="Chodník, dvor alebo príjazdová cesta môžu pôsobiť čisto a bezpečne."
+        description="Vysokotlakovým čistením odstránime nánosy špiny, machov, plesní a olejových škvŕn bez zbytočného poškodzovania dlažby."
+        bullets={[
+          "Čistenie chodníkov, príjazdových ciest a dvorov",
+          "Moderná technika a ekologické prostriedky",
+          "Cena podľa veľkosti, typu a stavu dlažby",
+        ]}
+        imageSrc={MEDIA.preview}
+        imageAlt="Čistenie dlažby"
+      />
 
       {/* ── COVERAGE ─────────────────────────────────────────────────── */}
       <section className="border-b border-border bg-light py-10">
@@ -207,6 +224,10 @@ export default function CistenieDlazbyPage() {
           <CistenieDlazbyQuoteForm />
         </AnimateOnScroll>
       </section>
+      <ServiceRealizationGallery
+        serviceSlug="cistenie-dlazby"
+        title="Realizácie čistenia dlažby"
+      />
       <FloatingQuoteButton />
     </>
   );

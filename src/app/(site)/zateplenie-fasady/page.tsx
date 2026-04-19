@@ -5,7 +5,9 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import FaqAccordion from "@/components/site/FaqAccordion";
 import FloatingQuoteButton from "@/components/site/FloatingQuoteButton";
 import InsulationQuoteForm from "@/components/site/InsulationQuoteForm";
-import LegacyGallerySection from "@/components/site/LegacyGallerySection";
+import ServiceRealizationGallery from "@/components/site/ServiceRealizationGallery";
+import QuoteScrollButton from "@/components/site/QuoteScrollButton";
+import ServiceIntroSection from "@/components/site/ServiceIntroSection";
 import { getSitePageByPath } from "@/lib/espron-content";
 import { ZATEPLENIE_FASADY_REALIZATIONS } from "@/lib/legacy-gallery-data";
 import { CONTACT_INFO } from "@/lib/site-navigation";
@@ -153,9 +155,9 @@ export default async function ZateplenieFasadyPage() {
               {page?.description}
             </p>
             <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap gap-3">
-              <Link href="/kontakt" className="rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
+              <QuoteScrollButton className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
                 Kontaktovať nás
-              </Link>
+              </QuoteScrollButton>
               <Link href={`mailto:${CONTACT_INFO.email}`} className="rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-white/10">
                 Napísať e-mail
               </Link>
@@ -174,66 +176,37 @@ export default async function ZateplenieFasadyPage() {
         </div>
       </section>
 
-      {/* ── CUSTOM HERO ──────────────────────────────────────────────── */}
-      <section className="relative py-20 md:py-28">
-        <div className="mx-auto grid w-[92%] grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-          <AnimateOnScroll>
-            <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-foreground md:text-4xl lg:text-5xl">
-              Kompletné zateplenie rodinných domov{" "}
-              <span className="underline underline-offset-4">kdekoľvek na Slovensku.</span>
-              <br />
-              <span className="font-light text-foreground/70">
-                Bez estetických chýb a skrytých poplatkov.
-              </span>
-            </h2>
-            <p className="mt-6 text-base leading-8 text-foreground/70">
-              Vďaka práci zohraných 4-členných tímov a prísnym technologickým postupom eliminujeme bežné chyby, ako sú trhliny alebo viditeľné spoje na omietke.
-            </p>
-            <p className="mt-3 text-base leading-8 text-foreground/70">
-              Kým iní si tieto veci účtujú ako príplatky, my ich považujeme za základ slušne odvedenej práce:
-            </p>
-            <ul className="mt-4 space-y-2">
-              {["Postavenie a doprava lešenia", "Kompletné zakrytie okien a dlažby", "Odvoz a likvidácia odpadu"].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-sm text-foreground/80">
-                  <svg className="h-4 w-4 shrink-0 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 px-5 py-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
-                Posledná šanca: Zateplenie za staré ceny
-              </p>
-              <p className="mt-1 text-sm text-foreground/70">
-                + Bonus <em>„Čistý domov“</em> (Tepovanie a strojové čistenie okolia domu)
-              </p>
-              <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
-                Posledné 2 voľné termíny
-              </p>
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/kontakt" className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-primary/90">
-                Chcem nezáväznú cenovú ponuku
-              </Link>
-            </div>
-            <div className="mt-6 flex items-center gap-2">
-              <span className="text-amber-400">★★★★★</span>
-              <span className="text-sm text-foreground/55">Hodnotenie na Google</span>
-            </div>
-          </AnimateOnScroll>
-          <AnimateOnScroll delay={120} className="relative hidden aspect-[4/3] overflow-hidden rounded-3xl lg:block">
-            <Image
-              src="/images/realizacie/b0408c_2883303b07a4489798740af9878cc2db~mv2.avif"
-              alt="Zateplenie fasády"
-              fill
-              sizes="50vw"
-              className="object-cover"
-            />
-          </AnimateOnScroll>
-        </div>
-      </section>
+      <ServiceIntroSection
+        titleSize="compact"
+        title={
+          <>
+            Kompletné zateplenie rodinných domov{" "}
+            <span className="underline underline-offset-4">kdekoľvek na Slovensku.</span>
+            <br />
+            <span className="font-light text-foreground/70">
+              Bez estetických chýb a skrytých poplatkov.
+            </span>
+          </>
+        }
+        description="Vďaka práci zohraných 4-členných tímov a prísnym technologickým postupom eliminujeme bežné chyby, ako sú trhliny alebo viditeľné spoje na omietke."
+        secondaryDescription="Kým iní si tieto veci účtujú ako príplatky, my ich považujeme za základ slušne odvedenej práce:"
+        bullets={[
+          "Postavenie a doprava lešenia",
+          "Kompletné zakrytie okien a dlažby",
+          "Odvoz a likvidácia odpadu",
+        ]}
+        note={{
+          label: "Posledná šanca: Zateplenie za staré ceny",
+          body: (
+            <>
+              + Bonus <em>„Čistý domov“</em> (Tepovanie a strojové čistenie okolia domu)
+            </>
+          ),
+          footer: "Posledné 2 voľné termíny",
+        }}
+        imageSrc="/images/realizacie/b0408c_2883303b07a4489798740af9878cc2db~mv2.avif"
+        imageAlt="Zateplenie fasády"
+      />
 
       {/* ── INCLUDED ─────────────────────────────────────────────────── */}
       <section className="bg-light py-20 md:py-28">
@@ -396,10 +369,11 @@ export default async function ZateplenieFasadyPage() {
           <InsulationQuoteForm />
         </AnimateOnScroll>
       </section>
-      <LegacyGallerySection
+      <ServiceRealizationGallery
+        serviceSlug="zateplenie-fasady"
         title="Ukážky zateplenia fasád"
         description="Realizácie z Hlohovca, Trnavy, Banskej Bystrice a Brezna vrátane jednej video ukážky z pôvodnej galérie."
-        items={ZATEPLENIE_FASADY_REALIZATIONS}
+        legacyItems={ZATEPLENIE_FASADY_REALIZATIONS}
         columns={4}
       />
       <FloatingQuoteButton />

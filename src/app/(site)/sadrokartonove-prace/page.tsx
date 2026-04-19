@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import FloatingQuoteButton from "@/components/site/FloatingQuoteButton";
+import ServiceRealizationGallery from "@/components/site/ServiceRealizationGallery";
+import QuoteScrollButton from "@/components/site/QuoteScrollButton";
 import SadrokartonQuoteForm from "@/components/site/SadrokartonQuoteForm";
+import ServiceIntroSection from "@/components/site/ServiceIntroSection";
 import { SERVICE_PAGE_MEDIA } from "@/lib/service-page-media";
 import { PAGE_OVERRIDES } from "@/lib/site-navigation";
 
@@ -88,15 +91,29 @@ export default function SadrokartonPage() {
             Sadrokartónový strop predstavuje ideálne riešenie pre vlastníkov rodinných domov, bytových domov a komerčných budov s vysokými alebo krivými stropmi, ktorí chcú zlepšiť estetický vzhľad, akustiku alebo zvýšiť energetickú úsporu.
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap gap-3">
-            <Link href="/kontakt" className="rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
+            <QuoteScrollButton className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
               Kontaktovať nás
-            </Link>
+            </QuoteScrollButton>
             <Link href="mailto:info@espron.sk" className="rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-white/10">
               Napísať e-mail
             </Link>
           </div>
         </div>
       </section>
+
+      <ServiceIntroSection
+        eyebrow={CATEGORY}
+        title="Sadrokartónové práce pre čistý a pripravený interiér"
+        subtitle="Stropy, priečky a zakrytie nerovností bez zbytočného chaosu."
+        description="Sadrokartón je rýchle riešenie, keď potrebujete upraviť dispozíciu, znížiť vysoký strop alebo pripraviť priestor na maľovanie a finálne práce."
+        bullets={[
+          "Znížené stropy a sadrokartónové priečky",
+          "Príprava profilov, dosiek, tmelenie a brúsenie",
+          "Nacenenie podľa plochy, prístupu a detailov",
+        ]}
+        imageSrc={MEDIA.preview}
+        imageAlt="Sadrokartónové práce"
+      />
 
       {/* ── COVERAGE ─────────────────────────────────────────────────── */}
       <section className="border-b border-border bg-light py-10">
@@ -257,6 +274,10 @@ export default function SadrokartonPage() {
           <SadrokartonQuoteForm />
         </AnimateOnScroll>
       </section>
+      <ServiceRealizationGallery
+        serviceSlug="sadrokartonove-prace"
+        title="Realizácie sadrokartónových prác"
+      />
       <FloatingQuoteButton />
     </>
   );

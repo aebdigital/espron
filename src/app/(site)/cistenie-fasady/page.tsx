@@ -4,7 +4,9 @@ import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import CistenieFasadyQuoteForm from "@/components/site/CistenieFasadyQuoteForm";
 import FloatingQuoteButton from "@/components/site/FloatingQuoteButton";
-import LegacyGallerySection from "@/components/site/LegacyGallerySection";
+import ServiceRealizationGallery from "@/components/site/ServiceRealizationGallery";
+import QuoteScrollButton from "@/components/site/QuoteScrollButton";
+import ServiceIntroSection from "@/components/site/ServiceIntroSection";
 import { CISTENIE_FASADY_REALIZATIONS } from "@/lib/legacy-gallery-data";
 import { PAGE_OVERRIDES } from "@/lib/site-navigation";
 
@@ -56,12 +58,9 @@ export default function CistenieFasadyPage() {
             a pomôže vrátiť domu čistý a udržiavaný vzhľad.
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/kontakt"
-              className="rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90"
-            >
+            <QuoteScrollButton className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
               Kontaktovať nás
-            </Link>
+            </QuoteScrollButton>
             <Link
               href="mailto:info@espron.sk"
               className="rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-white/10"
@@ -72,46 +71,15 @@ export default function CistenieFasadyPage() {
         </div>
       </section>
 
-      {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28">
-        <div className="relative mx-auto grid w-[92%] gap-12 lg:grid-cols-2 lg:items-center">
-          <AnimateOnScroll>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-primary/55">
-              {CATEGORY}
-            </p>
-            <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              Čistenie fasády
-            </h1>
-            <p className="mt-3 text-2xl font-light text-foreground/75 md:text-3xl">
-              Vráťte svojmu domu pôvodný šmrnc
-            </p>
-            <p className="mt-6 max-w-xl text-base leading-8 text-foreground/70">
-              Profesionálnym čistením sa zbavte nevzhľadných zelených škvrn, machov a plesní a eliminujte možné alergie.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/kontakt"
-                className="rounded-full bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-primary/90"
-              >
-                Chcem nezáväznú cenovú ponuku
-              </Link>
-            </div>
-            <div className="mt-6 flex items-center gap-2">
-              <span className="text-amber-400">★★★★★</span>
-              <span className="text-sm text-foreground/55">Hodnotenie na google</span>
-            </div>
-          </AnimateOnScroll>
-          <AnimateOnScroll delay={120} className="relative hidden aspect-[4/3] overflow-hidden rounded-3xl lg:block">
-            <Image
-              src="/images/old-site/cistenie-fasady/tatranska-lomnica-03.webp"
-              alt="Čistenie fasády"
-              fill
-              sizes="50vw"
-              className="object-cover"
-            />
-          </AnimateOnScroll>
-        </div>
-      </section>
+      <ServiceIntroSection
+        eyebrow={CATEGORY}
+        title="Čistenie fasády"
+        subtitle="Vráťte svojmu domu pôvodný šmrnc"
+        description="Profesionálnym čistením sa zbavte nevzhľadných zelených škvrn, machov a plesní a eliminujte možné alergie."
+        imageSrc="/images/old-site/cistenie-fasady/tatranska-lomnica-03.webp"
+        imageAlt="Čistenie fasády"
+        titleSize="large"
+      />
 
       {/* ── PROBLEMS ─────────────────────────────────────────────────── */}
       <section className="bg-light py-20 md:py-28">
@@ -242,10 +210,11 @@ export default function CistenieFasadyPage() {
           <CistenieFasadyQuoteForm />
         </AnimateOnScroll>
       </section>
-      <LegacyGallerySection
+      <ServiceRealizationGallery
+        serviceSlug="cistenie-fasady"
         title="Ukážky čistenia fasád"
         description="Vybrané realizácie čistenia fasád z Tatranskej Lomnice a Prakoviec."
-        items={CISTENIE_FASADY_REALIZATIONS}
+        legacyItems={CISTENIE_FASADY_REALIZATIONS}
         columns={3}
       />
       <FloatingQuoteButton />

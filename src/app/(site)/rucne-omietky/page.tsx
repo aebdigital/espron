@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import FloatingQuoteButton from "@/components/site/FloatingQuoteButton";
+import ServiceRealizationGallery from "@/components/site/ServiceRealizationGallery";
+import QuoteScrollButton from "@/components/site/QuoteScrollButton";
 import RucneOmietkyQuoteForm from "@/components/site/RucneOmietkyQuoteForm";
+import ServiceIntroSection from "@/components/site/ServiceIntroSection";
 import { SERVICE_PAGE_MEDIA } from "@/lib/service-page-media";
 import { PAGE_OVERRIDES } from "@/lib/site-navigation";
 
@@ -74,15 +77,29 @@ export default function RucneOmietkyPage() {
             Ručné omietky sú vhodným riešením pri rekonštrukciách alebo menších objektoch s plochou do 200 m².
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-wrap gap-3">
-            <Link href="/kontakt" className="rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
+            <QuoteScrollButton className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary transition-colors hover:bg-white/90">
               Kontaktovať nás
-            </Link>
+            </QuoteScrollButton>
             <Link href="mailto:info@espron.sk" className="rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:bg-white/10">
               Napísať e-mail
             </Link>
           </div>
         </div>
       </section>
+
+      <ServiceIntroSection
+        eyebrow={CATEGORY}
+        title="Ručné omietky pre rekonštrukcie a menšie objekty"
+        subtitle="Rovný povrch tam, kde sa veľká strojová realizácia neoplatí."
+        description="Ručné omietky sú vhodné pri úpravách staršieho muriva, menších plochách a miestach, kde potrebujete lepšiu kontrolu nad detailom aj výslednou štruktúrou."
+        bullets={[
+          "Príprava podkladu a penetračný náter",
+          "Ručné nanesenie a vyhladenie omietky",
+          "Vhodné pre rekonštrukcie a plochy do 200 m²",
+        ]}
+        imageSrc={MEDIA.preview}
+        imageAlt="Ručné omietky"
+      />
 
       {/* ── COVERAGE ─────────────────────────────────────────────────── */}
       <section className="border-b border-border bg-light py-10">
@@ -247,6 +264,10 @@ export default function RucneOmietkyPage() {
           <RucneOmietkyQuoteForm />
         </AnimateOnScroll>
       </section>
+      <ServiceRealizationGallery
+        serviceSlug="rucne-omietky"
+        title="Realizácie ručných omietok"
+      />
       <FloatingQuoteButton />
     </>
   );

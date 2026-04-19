@@ -29,14 +29,13 @@ export default function InteractiveFaqAccordion({
       : "px-6 pb-5 pt-1 text-sm leading-7 text-foreground/74 md:px-7 md:pb-6";
 
   return (
-    <div className="space-y-4" onMouseLeave={() => setOpenIndex(null)}>
+    <div className="space-y-4">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
 
         return (
           <article
             key={item.question}
-            onMouseEnter={() => setOpenIndex(index)}
             className={`overflow-hidden rounded-[2rem] border transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isOpen
                 ? "border-primary/35 bg-primary/[0.04] shadow-[0_18px_55px_rgba(15,29,74,0.08)]"
@@ -47,7 +46,6 @@ export default function InteractiveFaqAccordion({
               type="button"
               aria-expanded={isOpen}
               onClick={() => setOpenIndex(isOpen ? null : index)}
-              onFocus={() => setOpenIndex(index)}
               className="flex w-full cursor-pointer items-start justify-between gap-5 px-6 py-5 text-left md:px-8 md:py-6"
             >
               <span className={questionClassName}>{item.question}</span>
