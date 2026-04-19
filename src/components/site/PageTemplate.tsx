@@ -95,34 +95,51 @@ const POLYSTYREN_BEFORE_AFTER_GALLERY: PolystyrenGalleryItem[] = [
   },
 ];
 
-const MINERALNA_HOVER_GALLERY: PolystyrenGalleryItem[] = [
+const MINERALNA_PRED_ZATEPLENIM: PolystyrenGalleryItem[] = [
   {
-    title: "Obitá omietka balkóna s odkrytou železnou konštrukciou",
-    description:
-      "Detail spodnej časti balkóna s odstránenou omietkou, odhaľujúcou pôvodnú železnú konštrukciu. Táto fáza ukazuje stav pred jej vystužením a aplikáciou sanačných materiálov.",
-    alt: "Obitá omietka balkóna s odkrytou železnou konštrukciou",
+    title: "Pôvodný stav balkóna pred rekonštrukciou",
+    description: "Na fotografii môžete vidieť pôvodný balkón so skorodovanými oceľovými prvkami a odlupujúcou sa omietkou. Tento stav si vyžadoval odstránenie narušenej vrstvy omietky a dôkladné vystuženie konštrukcie, aby sa zabezpečila bezpečnosť a stabilita.",
+    alt: "Pôvodný stav balkóna pred rekonštrukciou",
     image: "/mineralna/Pôvodný balkón pred rekonštrukciou.avif",
   },
   {
-    title: "Balkón pred rekonštrukciou s vyplnenou dierou v stene",
-    description:
-      "Pohľad na balkón zhora v pôvodnom stave pred začiatkom väčších rekonštrukčných prác. V stene je vidieť vyplnenú dieru lepiacou maltou, ktorá predznamenáva ďalšie úpravy.",
-    alt: "Balkón pred rekonštrukciou s vyplnenou dieru v stene",
+    title: "Pôvodná strieška nad vchodom",
+    description: "Fotografia zachytáva pôvodnú železnú konštrukciu striešky, ktorá bola už v zlom stave. Strieška bola kompletne nahradená novou konštrukciou, ktorá bola následne zateplená minerálnou vlnou a esteticky zjednotená s fasádou.",
+    alt: "Pôvodná strieška nad vchodom",
+    image: "/mineralna/Pôvodná strieška nad vchodovými dverami.avif",
+  },
+  {
+    title: "Detail balkóna – pohľad zhora",
+    description: "Záber z vrchnej časti balkóna ukazuje stav pred realizáciou prác, vrátane skorodovaných oceľových prvkov. Táto časť bola dôkladne očistená, vystužená roxormi a opravená použitím sanačnej malty.",
+    alt: "Detail balkóna – pohľad zhora",
     image: "/mineralna/1.avif",
+  },
+];
+
+const MINERALNA_HOVER_GALLERY: PolystyrenGalleryItem[] = [
+  {
+    title: "Obitá omietka balkóna s odkrytou železnou konštrukciou",
+    description: "Detail spodnej časti balkóna s odstránenou omietkou, odhaľujúcou pôvodnú železnú konštrukciu. Táto fáza ukazuje stav pred jej vystužením a aplikáciou sanačných materiálov.",
+    alt: "Obitá omietka balkóna s odkrytou železnou konštrukciou",
+    image: "/mineralna/4.avif",
+  },
+  {
+    title: "Balkón pred rekonštrukciou s vyplnenou dierou v stene",
+    description: "Pohľad na balkón zhora v pôvodnom stave pred začiatkom väčších rekonštrukčných prác. V stene je vidieť vyplnenú dieru lepiacou maltou, ktorá predznamenáva ďalšie úpravy.",
+    alt: "Balkón pred rekonštrukciou s vyplnenou dieru v stene",
+    image: "/mineralna/5.avif",
   },
   {
     title: "Detail obitej steny pod oknom balkóna po odstránení tehlového obkladu",
-    description:
-      "Detail obitej steny pod oknom balkóna, kde bol predtým tehlový obklad. Táto fáza prípravy odhaľuje stav muriva a pripravuje povrch na aplikáciu izolačného materiálu.",
+    description: "Detail obitej steny pod oknom balkóna, kde bol predtým tehlový obklad. Táto fáza prípravy odhaľuje stav muriva a pripravuje povrch na aplikáciu izolačného materiálu.",
     alt: "Detail obitej steny pod oknom balkóna",
-    image: "/mineralna/2.avif",
+    image: "/mineralna/6.avif",
   },
   {
     title: "Pokročilá fáza rekonštrukcie balkóna s natiahnutou lepiacou maltou",
-    description:
-      "Pokročilejšia fáza rekonštrukcie balkóna, kde je už natiahnutá lepiaca malta na stene po odstránení tehlového obkladu. Viditeľná je aj posledná odstránená časť pôvodných kachličiek na podlahe balkóna.",
+    description: "Pokročilejšia fáza rekonštrukcie balkóna, kde je už natiahnutá lepiaca malta na stene po odstránení tehlového obkladu. Viditeľná je aj posledná odstránená časť pôvodných kachličiek na podlahe balkóna.",
     alt: "Pokročilá fáza rekonštrukcie balkóna s natiahnutou lepiacou maltou",
-    image: "/mineralna/3.avif",
+    image: "/mineralna/7.avif",
   },
 ];
 
@@ -758,6 +775,11 @@ function MineralnaVlnaCaseStudyBody({ page }: { page: SitePage }) {
           </div>
         </div>
       </PolystyrenSection>
+
+      <HoverGallery
+        title="Pôvodný stav pred zateplením"
+        items={MINERALNA_PRED_ZATEPLENIM}
+      />
 
       <PolystyrenSection>
         <PolystyrenHeading>

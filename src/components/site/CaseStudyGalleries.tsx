@@ -25,7 +25,7 @@ export function HoverGallery({ title, items }: { title: string; items: GalleryIt
           <h3 className="mb-7 text-center text-3xl font-semibold leading-tight tracking-tight md:text-[2.35rem]">
             {title}
           </h3>
-          <div className="grid gap-3 lg:grid-cols-3 xl:grid-cols-4">
+          <div className={`grid gap-3 lg:grid-cols-3 ${items.length >= 4 ? "xl:grid-cols-4" : ""}`}>
             {items.map((item, index) => (
               <figure
                 key={item.title}
@@ -84,7 +84,7 @@ export function BeforeAfterGallery({ title, items }: { title: string; items: Gal
               {title}
             </h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className={`grid gap-4 sm:grid-cols-2 ${items.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
             {items.map((item, index) => (
               <figure
                 key={item.title}
