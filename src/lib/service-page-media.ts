@@ -3,6 +3,9 @@ import type { LegacyGalleryItem } from "@/lib/legacy-gallery-data";
 export const FEATURED_FACADE_IMAGE =
   "/images/realizacie/b0408c_2883303b07a4489798740af9878cc2db~mv2.avif";
 
+export const INTERIOR_DESIGN_IMAGE =
+  "/images/Kópia súboru _int_obývací pokoj_2.jpg";
+
 type ServicePageMedia = {
   preview: string;
   items: LegacyGalleryItem[];

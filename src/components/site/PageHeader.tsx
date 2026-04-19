@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import SiteMenuOverlay from "@/components/site/SiteMenuOverlay";
 import {
   FEATURED_FACADE_IMAGE,
+  INTERIOR_DESIGN_IMAGE,
   getServicePreviewImage,
 } from "@/lib/service-page-media";
 import {
@@ -68,7 +69,7 @@ const PREVIEW_CONTENT: Record<string, Pick<MegaMenuItem, "image" | "description"
     description: "Ručné omietky pre rekonštrukcie, interiéry aj exteriéry.",
   },
   "/interierovy-dizajn": {
-    image: "/images/interier.jpg",
+    image: INTERIOR_DESIGN_IMAGE,
     description: "Návrh dispozície, 3D vizualizácie a interiér na mieru.",
   },
   "/tepovanie": {

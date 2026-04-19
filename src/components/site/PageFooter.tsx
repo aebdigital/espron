@@ -10,10 +10,7 @@ export default function PageFooter() {
  <div className="relative mx-auto w-[92%] py-16 md:py-20">
         <div className="grid gap-12 border-b border-white/10 pb-14 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="max-w-md">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/40">
-              ESPRON
-            </p>
-            <div className="mt-8 space-y-2 text-sm text-white/72">
+            <div className="space-y-2 text-sm text-white/72">
               <p>{CONTACT_INFO.company}</p>
               <p>IČO: {CONTACT_INFO.ico}</p>
               <p>{CONTACT_INFO.addressLines.join(", ")}</p>

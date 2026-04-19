@@ -70,6 +70,8 @@ def should_crawl(url: str) -> bool:
 def clean_text(text: str) -> str:
     text = unescape(text)
     text = re.sub(r"\s+", " ", text).strip()
+    # Tidy spaces before common punctuation inserted by joining inline fragments.
+    text = re.sub(r"\s+([,.;:!?])", r"\1", text)
     return text
 
 
@@ -93,6 +95,9 @@ def is_image_url(url: str) -> bool:
     return any(ext in low for ext in IMAGE_EXTS)
 
 
+BLOCK_TAGS = {"p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote"}
+
+
 class PageParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
@@ -111,6 +116,7 @@ class PageParser(HTMLParser):
         self.og_title = ""
         self.og_description = ""
         self.canonical = ""
+        self.block_stack: list[list[str]] = []
 
     def region(self) -> str:
         if self.nav_depth:
@@ -120,6 +126,29 @@ class PageParser(HTMLParser):
         if self.footer_depth:
             return "footer"
         return "body"
+
+    def flush_block(self) -> None:
+        if not self.block_stack:
+            return
+        parts = self.block_stack.pop()
+        joined = clean_text(" ".join(parts))
+        if not joined or len(joined) < 2:
+            return
+        region = self.region()
+        if region == "nav":
+            self.nav_text_chunks.append(joined)
+        elif region == "body":
+            self.text_chunks.append(joined)
+
+    def append_text(self, text: str) -> None:
+        if self.block_stack:
+            self.block_stack[-1].append(text)
+            return
+        region = self.region()
+        if region == "nav":
+            self.nav_text_chunks.append(text)
+        elif region == "body":
+            self.text_chunks.append(text)
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attr_map = dict(attrs)
@@ -155,6 +184,13 @@ class PageParser(HTMLParser):
                 self.canonical = href.strip()
             return
 
+        if tag == "br" and self.block_stack:
+            self.block_stack[-1].append("\n")
+            return
+
+        if tag in BLOCK_TAGS:
+            self.block_stack.append([])
+
         if tag == "a":
             self.current_link = {
                 "href": normalize_url(attr_map.get("href")),
@@ -183,13 +219,7 @@ class PageParser(HTMLParser):
             if self.title_depth:
                 self.title_depth -= 1
             return
-        if tag == "header" and self.header_depth:
-            self.header_depth -= 1
-        elif tag == "footer" and self.footer_depth:
-            self.footer_depth -= 1
-        elif tag == "nav" and self.nav_depth:
-            self.nav_depth -= 1
-        elif tag == "a" and self.current_link is not None:
+        if tag == "a" and self.current_link is not None:
             href = self.current_link["href"]
             text_parts = self.current_link["text_parts"]
             text = clean_text(" ".join(text_parts)) if isinstance(text_parts, list) else ""
@@ -202,6 +232,16 @@ class PageParser(HTMLParser):
                     }
                 )
             self.current_link = None
+
+        if tag in BLOCK_TAGS:
+            self.flush_block()
+
+        if tag == "header" and self.header_depth:
+            self.header_depth -= 1
+        elif tag == "footer" and self.footer_depth:
+            self.footer_depth -= 1
+        elif tag == "nav" and self.nav_depth:
+            self.nav_depth -= 1
 
     def handle_data(self, data: str) -> None:
         if self.ignore_depth:
@@ -216,11 +256,7 @@ class PageParser(HTMLParser):
             text_parts = self.current_link["text_parts"]
             if isinstance(text_parts, list):
                 text_parts.append(text)
-        region = self.region()
-        if region == "nav":
-            self.nav_text_chunks.append(text)
-        elif region == "body":
-            self.text_chunks.append(text)
+        self.append_text(text)
 
 
 def extract_image_urls(raw_html: str) -> list[str]:

@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   FEATURED_FACADE_IMAGE,
+  INTERIOR_DESIGN_IMAGE,
   getServicePreviewImage,
 } from "@/lib/service-page-media";
 import { listBlogPosts } from "@/lib/cms-blog-posts";
@@ -20,7 +21,7 @@ const services = [
   { title: "Zateplenie fasády", image: FEATURED_FACADE_IMAGE, href: "/zateplenie-fasady" },
   { title: "Sadrokartónové práce", image: getServicePreviewImage("/sadrokartonove-prace", "/images/stavebne.jpg"), href: "/sadrokartonove-prace" },
   { title: "Ručné omietky", image: getServicePreviewImage("/rucne-omietky", "/images/interier-ext.jpg"), href: "/rucne-omietky" },
-  { title: "Interiérový dizajn", image: "/images/interier.jpg", href: "/interierovy-dizajn" },
+  { title: "Interiérový dizajn", image: INTERIOR_DESIGN_IMAGE, href: "/interierovy-dizajn" },
   { title: "Čistenie fasády", image: "/images/old-site/cistenie-fasady/tatranska-lomnica-03.webp", href: "/cistenie-fasady" },
   { title: "Čistenie dlažby", image: getServicePreviewImage("/cistenie-dlazby", "/images/realizacie/b0408c_fdbfe48c629c4b9ca41b1651bc21cf79~mv2.avif"), href: "/cistenie-dlazby" },
   { title: "Tepovanie", image: getServicePreviewImage("/tepovanie", "/images/projekt1.jpg"), href: "/tepovanie" },

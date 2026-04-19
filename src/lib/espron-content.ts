@@ -87,6 +87,7 @@ export type SitePage = {
   related: Array<{
     href: string;
     label: string;
+    description: string;
   }>;
 };
 
@@ -620,10 +621,15 @@ function buildInsulationMainBlocks(lines: string[]): ContentBlock[] {
 
 function buildCityBlocks(lines: string[]): ContentBlock[] {
   const body = stripFooter(lines);
-  const regionIndex = sectionIndex(body, "Pracujeme aj");
+  const regionIndex = Math.max(
+    sectionIndex(body, "Pracujeme aj"),
+    sectionIndex(body, "Pôsobíme aj"),
+    sectionIndex(body, "Naša skúsenosť"),
+  );
   const benefitIndex = Math.max(
     sectionIndex(body, "Čo získate spoluprácou s nami"),
     sectionIndex(body, "Prečo si vybrať práve nás"),
+    sectionIndex(body, "Prečo sa oplatí"),
   );
   const priceIndex = Math.max(
     sectionIndex(body, "A čo cena?"),
@@ -634,28 +640,51 @@ function buildCityBlocks(lines: string[]): ContentBlock[] {
     sectionIndex(body, "Ako to celé prebieha"),
     sectionIndex(body, "Ako prebieha spolupráca"),
   );
+  const contactTitleIndex = sectionIndex(body, "Napíšte nám");
+  const emailIndex = body.findIndex((line) => line === CONTACT_INFO.email);
+  const contactIndex =
+    contactTitleIndex >= 0
+      ? contactTitleIndex
+      : emailIndex > processIndex
+        ? emailIndex
+        : -1;
+  const contactContentIndex =
+    contactTitleIndex >= 0 ? contactTitleIndex + 1 : contactIndex;
   const recentIndex = sectionIndex(body, "Nedávno dokončené zateplenia");
+  const introEnd =
+    regionIndex > 1 ? regionIndex : benefitIndex > 1 ? benefitIndex : body.length;
+  const processEnd =
+    contactIndex > processIndex
+      ? contactIndex
+      : recentIndex > processIndex
+        ? recentIndex
+        : body.length;
+  const contactEnd =
+    recentIndex > contactIndex && contactIndex >= 0 ? recentIndex : body.length;
 
   return compactBlocks([
     paragraphsBlock(
-      "Prečo je táto lokalita pre nás dôležitá",
-      body.slice(1, regionIndex > 1 ? regionIndex : benefitIndex > 1 ? benefitIndex : body.length),
+      body[0] ?? "Zateplenie fasády",
+      body.slice(1, introEnd),
     ),
     regionIndex >= 0 && benefitIndex > regionIndex
-      ? rawBlock("Skúsenosti z regiónu", body.slice(regionIndex + 1, benefitIndex))
+      ? rawBlock(body[regionIndex], body.slice(regionIndex + 1, benefitIndex))
       : null,
     benefitIndex >= 0 && priceIndex > benefitIndex
       ? {
           type: "pairs",
-          title: "Čo získate spoluprácou s nami",
+          title: body[benefitIndex],
           items: parseCityChecks(body.slice(benefitIndex + 1, priceIndex)),
         }
       : null,
     priceIndex >= 0 && processIndex > priceIndex
-      ? rawBlock("Cena a rozsah služby", body.slice(priceIndex + 1, processIndex))
+      ? rawBlock(body[priceIndex], body.slice(priceIndex + 1, processIndex))
       : null,
-    processIndex >= 0 && recentIndex > processIndex
-      ? rawBlock("Ako prebieha spolupráca", body.slice(processIndex + 1, recentIndex))
+    processIndex >= 0 && processEnd > processIndex
+      ? rawBlock(body[processIndex], body.slice(processIndex + 1, processEnd))
+      : null,
+    contactIndex >= 0 && contactEnd > contactIndex
+      ? rawBlock("Napíšte nám", body.slice(contactContentIndex, contactEnd))
       : null,
     recentIndex >= 0
       ? rawBlock("Nedávno dokončené zateplenia", body.slice(recentIndex + 1))
@@ -834,7 +863,16 @@ async function loadCmsPages(): Promise<SitePage[]> {
     const pages = await Promise.all(
       jsonFiles.map(async (file) => {
         const raw = await fs.readFile(path.join(CMS_PAGES_DIR, file), "utf8");
-        return JSON.parse(raw) as SitePage;
+        const parsed = JSON.parse(raw) as SitePage;
+        parsed.related = (parsed.related ?? []).map((item) => ({
+          href: item.href,
+          label: item.label,
+          description:
+            item.description ??
+            RELATED_DESCRIPTION_FALLBACKS[item.href] ??
+            "",
+        }));
+        return parsed;
       }),
     );
 
@@ -845,9 +883,66 @@ async function loadCmsPages(): Promise<SitePage[]> {
   }
 }
 
+const RELATED_DESCRIPTION_FALLBACKS: Record<string, string> = {
+  "/o-nas":
+    "Prečítajte si, ako vznikol ESPRON a kto stojí za realizáciami v teréne.",
+  "/kontakt":
+    "Napíšte nám — cenovú ponuku pripravíme do 48 hodín, bez marketingových fráz.",
+  "/zateplenie-fasady":
+    "Kompletné zateplenie fasády s dôrazom na dlhú životnosť a férový postup.",
+  "/zateplenie-fasady/svojpomocne":
+    "Praktický návod pre tých, ktorí uvažujú nad zateplením vlastnými rukami.",
+  "/zateplenie-fasady/faq":
+    "Najčastejšie otázky a odpovede k zatepleniu fasády rodinných domov.",
+  "/zateplenie-fasady/mineralna-vlna":
+    "Prípadová štúdia zateplenia rodinného domu minerálnou vlnou v Hlohovci.",
+  "/zateplenie-fasady/polystyren-biely-sivy":
+    "Prípadová štúdia zateplenia fasády polystyrénom v Trnave.",
+  "/zateplenie-fasady/bratislava":
+    "Zateplenie rodinných a bytových domov v Bratislave a okolí bez príplatkov.",
+  "/zateplenie-fasady/kosice":
+    "Férové zateplenie domov v Košiciach — s odborne spôsobilým stavbyvedúcim.",
+  "/zateplenie-fasady/nitra":
+    "Zateplenie domov v Nitre a na západnom Slovensku, ponuka do 48 hodín.",
+  "/zateplenie-fasady/trencin":
+    "Zateplenie v Trenčíne a okolí — skúsenosti zo západného Slovenska.",
+  "/zateplenie-fasady/trnava":
+    "Zateplenie fasády v Trnave a okolí, s realizáciami priamo v meste.",
+  "/sadrokartonove-prace":
+    "Sadrokartónové priečky, podhľady a obklady s precíznym prevedením.",
+  "/rucne-omietky":
+    "Ručné omietky — tradičné spracovanie s čistým, rovným výsledkom.",
+  "/interierovy-dizajn":
+    "Návrh interiéru od dispozície po finálny mood-board a realizáciu.",
+  "/tepovanie":
+    "Prémiové tepovanie sedačiek, kobercov a textilov s garanciou výsledku.",
+  "/cistenie-fasady":
+    "Čistenie fasády od machu, rias a nečistôt bez poškodenia omietky.",
+  "/cistenie-dlazby":
+    "Strojové čistenie dlažby — exteriér aj interiér, jedno-rázovo či pravidelne.",
+};
+
+function pickDescription(
+  href: string,
+  scrapedPageByPath: Map<string, ScrapedPage>,
+): string {
+  const scraped = scrapedPageByPath.get(href);
+  const metaDescription = scraped?.meta_description?.trim();
+  if (metaDescription) {
+    return metaDescription;
+  }
+  return (
+    RELATED_DESCRIPTION_FALLBACKS[href] ??
+    "Otvoriť podstránku s naviazaným obsahom."
+  );
+}
+
 export const getAllSitePages = cache(async (): Promise<SitePage[]> => {
   const snapshot = await getSnapshot();
   const pages: SitePage[] = [];
+  const scrapedPageByPath = new Map<string, ScrapedPage>(
+    snapshot.pages.map((entry) => [routeFromUrl(entry.url), entry]),
+  );
 
   for (const scrapedPage of snapshot.pages) {
     const currentPath = routeFromUrl(scrapedPage.url);
@@ -869,11 +964,13 @@ export const getAllSitePages = cache(async (): Promise<SitePage[]> => {
           ? {
               href,
               label: relatedPage.label,
+              description: pickDescription(href, scrapedPageByPath),
             }
           : null;
       })
       .filter(
-        (item): item is { href: string; label: string } => item !== null,
+        (item): item is { href: string; label: string; description: string } =>
+          item !== null,
       );
 
     pages.push({

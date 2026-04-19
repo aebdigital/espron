@@ -1,6 +1,6 @@
 # ESPRON.sk scrape report
 
-- Generated UTC: 2026-04-03T18:46:47.631886+00:00
+- Generated UTC: 2026-04-19T20:13:23.232381+00:00
 - Base URL: https://www.espron.sk
 - Sitemap pages: 20
 - Total crawled same-domain pages: 20

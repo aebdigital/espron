@@ -546,6 +546,42 @@ export default async function ZateplenieFasadyPage() {
         legacyItems={ZATEPLENIE_FASADY_REALIZATIONS}
         columns={4}
       />
+
+      {page?.related?.length ? (
+        <section className="py-20 md:py-28">
+          <div className="mx-auto w-[92%]">
+            <AnimateOnScroll>
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-primary/55">
+                Ďalej na webe
+              </p>
+              <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                Lokality a súvisiace podstránky
+              </h2>
+            </AnimateOnScroll>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {page.related.map((item, index) => (
+                <AnimateOnScroll key={item.href} delay={index * 60}>
+                  <Link
+                    href={item.href}
+                    className="group block rounded-[1.6rem] border border-border bg-light px-6 py-6 transition-all hover:-translate-y-1 hover:border-primary/25 hover:bg-white"
+                  >
+                    <p className="text-lg font-semibold text-foreground">
+                      {item.label}
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-foreground/65">
+                      {item.description}
+                    </p>
+                    <span className="mt-5 block whitespace-nowrap text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+                      Otvoriť
+                    </span>
+                  </Link>
+                </AnimateOnScroll>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <FloatingQuoteButton />
     </>
   );

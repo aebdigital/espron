@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-03T18:46:47.631886+00:00",
+  "generated_at_utc": "2026-04-19T20:13:23.232381+00:00",
   "base_url": "https://www.espron.sk",
   "robots_path": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/robots.txt",
   "sitemap_index_path": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/sitemap.xml",
@@ -157,7 +157,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/rucne-omietky.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/rucne-omietky.html",
-      "text_line_count": 49,
+      "text_line_count": 35,
       "image_count": 5
     },
     {
@@ -268,7 +268,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__trencin.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__trencin.html",
-      "text_line_count": 57,
+      "text_line_count": 37,
       "image_count": 48
     },
     {
@@ -331,7 +331,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/interierovy-dizajn.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/interierovy-dizajn.html",
-      "text_line_count": 51,
+      "text_line_count": 38,
       "image_count": 5
     },
     {
@@ -450,7 +450,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__mineralna-vlna.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__mineralna-vlna.html",
-      "text_line_count": 85,
+      "text_line_count": 59,
       "image_count": 60
     },
     {
@@ -559,7 +559,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__trnava.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__trnava.html",
-      "text_line_count": 54,
+      "text_line_count": 37,
       "image_count": 48
     },
     {
@@ -666,7 +666,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__svojpomocne.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__svojpomocne.html",
-      "text_line_count": 132,
+      "text_line_count": 105,
       "image_count": 48
     },
     {
@@ -726,7 +726,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__faq.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__faq.html",
-      "text_line_count": 22,
+      "text_line_count": 21,
       "image_count": 2
     },
     {
@@ -839,7 +839,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady.html",
-      "text_line_count": 132,
+      "text_line_count": 94,
       "image_count": 51
     },
     {
@@ -904,7 +904,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/tepovanie.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/tepovanie.html",
-      "text_line_count": 87,
+      "text_line_count": 64,
       "image_count": 6
     },
     {
@@ -1015,7 +1015,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__kosice.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__kosice.html",
-      "text_line_count": 53,
+      "text_line_count": 38,
       "image_count": 48
     },
     {
@@ -1126,7 +1126,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__nitra.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__nitra.html",
-      "text_line_count": 51,
+      "text_line_count": 38,
       "image_count": 48
     },
     {
@@ -1216,7 +1216,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__polystyren-biely-sivy.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__polystyren-biely-sivy.html",
-      "text_line_count": 96,
+      "text_line_count": 50,
       "image_count": 31
     },
     {
@@ -1277,7 +1277,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/kontakt.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/kontakt.html",
-      "text_line_count": 13,
+      "text_line_count": 10,
       "image_count": 3
     },
     {
@@ -1340,7 +1340,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/sadrokartonove-prace.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/sadrokartonove-prace.html",
-      "text_line_count": 56,
+      "text_line_count": 36,
       "image_count": 5
     },
     {
@@ -1451,7 +1451,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/zateplenie-fasady__bratislava.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/zateplenie-fasady__bratislava.html",
-      "text_line_count": 58,
+      "text_line_count": 37,
       "image_count": 48
     },
     {
@@ -1556,7 +1556,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/o-nas.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/o-nas.html",
-      "text_line_count": 36,
+      "text_line_count": 30,
       "image_count": 46
     },
     {
@@ -1619,7 +1619,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/cistenie-dlazby.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/cistenie-dlazby.html",
-      "text_line_count": 37,
+      "text_line_count": 26,
       "image_count": 5
     },
     {
@@ -1700,7 +1700,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/cistenie-fasady.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/cistenie-fasady.html",
-      "text_line_count": 51,
+      "text_line_count": 40,
       "image_count": 20
     },
     {
@@ -1763,7 +1763,7 @@
       ],
       "text_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/text/personalny-leasing-stavbarov.txt",
       "html_file": "/Users/alexanderhidveghy/Documents/cms/espron-next-navrh/_snapshot/espron/html/personalny-leasing-stavbarov.html",
-      "text_line_count": 26,
+      "text_line_count": 22,
       "image_count": 5
     },
     {
