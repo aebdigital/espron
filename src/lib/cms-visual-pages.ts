@@ -13,6 +13,7 @@ export type VisualElement = {
 
 export type VisualPage = {
   id: string;
+  site: "sk" | "cz";
   slug: string;
   title: string;
   elements: VisualElement[];
@@ -23,11 +24,15 @@ export type VisualPage = {
 
 export async function getVisualPageBySlug(
   slug: string,
-  { includeDrafts = false }: { includeDrafts?: boolean } = {},
+  {
+    includeDrafts = false,
+    site = "sk",
+  }: { includeDrafts?: boolean; site?: "sk" | "cz" } = {},
 ): Promise<VisualPage | null> {
   let query = supabaseServer
     .from("espron_visual_pages")
     .select("*")
+    .eq("site", site)
     .eq("slug", slug);
 
   if (!includeDrafts) {

@@ -13,12 +13,58 @@ exports.handler = async function (event) {
     };
   }
 
-  const { name, email, phone, subject, message } = body;
+  const { name, email, phone, subject, message, turnstileToken } = body;
 
   if (!email || !message) {
     return {
       statusCode: 400,
       body: JSON.stringify({ error: "Email a správa sú povinné." }),
+    };
+  }
+
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (!turnstileSecret) {
+    console.error("Missing env var: TURNSTILE_SECRET_KEY");
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Server configuration error" }),
+    };
+  }
+
+  if (!turnstileToken) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Bezpečnostné overenie zlyhalo." }),
+    };
+  }
+
+  const remoteIp = event.headers["client-ip"] || event.headers["x-forwarded-for"]?.split(",")[0]?.trim();
+  const verificationBody = new URLSearchParams({
+    secret: turnstileSecret,
+    response: turnstileToken,
+  });
+  if (remoteIp) verificationBody.set("remoteip", remoteIp);
+
+  try {
+    const turnstileRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: verificationBody,
+    });
+    const verification = await turnstileRes.json();
+
+    if (!verification.success) {
+      console.warn("Turnstile verification failed:", JSON.stringify(verification["error-codes"] ?? []));
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Bezpečnostné overenie zlyhalo." }),
+      };
+    }
+  } catch (err) {
+    console.error("Turnstile verification error:", err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Bezpečnostné overenie momentálne nefunguje." }),
     };
   }
 

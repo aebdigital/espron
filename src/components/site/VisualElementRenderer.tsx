@@ -1,5 +1,8 @@
 import type { CSSProperties } from "react";
 import type { VisualElement } from "@/lib/cms-visual-pages";
+import BuilderContactForm, {
+  type BuilderContactField,
+} from "./BuilderContactForm";
 
 const NUMERIC_STYLE_KEYS = new Set([
   "fontSize",
@@ -126,6 +129,26 @@ function renderElement(el: VisualElement): React.ReactNode {
           {(el.children ?? []).map(renderElement)}
         </div>
       );
+    case "contactForm": {
+      const cf = el as VisualElement & {
+        fields?: BuilderContactField[];
+        subject?: string;
+        buttonText?: string;
+        successTitle?: string;
+        successMessage?: string;
+      };
+      return (
+        <BuilderContactForm
+          key={el.id}
+          fields={Array.isArray(cf.fields) ? cf.fields : []}
+          subject={cf.subject}
+          buttonText={cf.buttonText}
+          successTitle={cf.successTitle}
+          successMessage={cf.successMessage}
+          style={style}
+        />
+      );
+    }
     default:
       return null;
   }
